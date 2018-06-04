@@ -42,15 +42,15 @@ interface ConfigInterface
      *
      * @return string
      */
-    public function getApiKey();
+    public function getDevKey();
 
     /**
-     * Sets the Appsflyer API key.
+     * Sets the Appsflyer DEV key.
      *
-     * @param  string  $apiKey
+     * @param  string  $devKey
      * @return $this
      */
-    public function setApiKey($apiKey);
+    public function setDevKey($devKey);
 
     /**
      * Returns the Appsflyer API version.

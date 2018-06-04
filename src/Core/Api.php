@@ -31,6 +31,7 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\RequestOptions;
 
 abstract class Api implements ApiInterface
 {
@@ -152,9 +153,8 @@ abstract class Api implements ApiInterface
     public function execute($httpMethod, $url, array $parameters = [])
     {
         try {
-            $parameters = Utility::prepareParameters($parameters);
-
-            $response = $this->getClient()->{$httpMethod}('/' . $url, ['query' => $parameters]);
+            // $parameters = Utility::prepareParameters($parameters);
+            $response = $this->getClient()->{$httpMethod}('/' . $url, $parameters);
 
             return json_decode((string) $response->getBody(), true);
         } catch (ClientException $e) {
@@ -186,7 +186,7 @@ abstract class Api implements ApiInterface
         $stack->push(Middleware::mapRequest(function (RequestInterface $request) {
                     $config = $this->config;
 
-                    $request = $request->withHeader('authentication', base64_encode($config->getApiKey()));
+                    $request = $request->withHeader('authentication', $config->getDevKey());
 
                     return $request;
                 }));

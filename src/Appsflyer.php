@@ -107,9 +107,9 @@ class Appsflyer
      *
      * @return string
      */
-    public function getApiKey()
+    public function getDevKey()
     {
-        return $this->config->getApiKey();
+        return $this->config->getDevKey();
     }
 
     /**

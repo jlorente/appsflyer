@@ -19,12 +19,14 @@
 
 namespace Jlorente\Appsflyer\Api;
 
+use GuzzleHttp\RequestOptions;
 use Jlorente\Appsflyer\Core\Api;
 
 /**
  * Class InAppEvent.
  * 
  * @author Jose Lorente <jose.lorente.martin@gmail.com>
+ * @see https://support.appsflyer.com/hc/en-us/articles/115005544169-Rich-In-App-Events-Android-and-iOS#EventTypes
  */
 class InAppEvent extends Api
 {
@@ -46,7 +48,9 @@ class InAppEvent extends Api
      */
     public function create($appId, array $parameters = [])
     {
-        return $this->_post("inappevent/$appId", $parameters);
+        return $this->_post("inappevent/$appId", [
+                    RequestOptions::JSON => $parameters
+        ]);
     }
 
 }

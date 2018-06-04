@@ -32,7 +32,7 @@ class Utility
         $toConvert = [ 'amount', 'price' ];
 
         if (self::needsAmountConversion($parameters)) {
-            if ($converter = Stripe::getAmountConverter()) {
+            if ($converter = Appsflyer::getAmountConverter()) {
                 foreach ($toConvert as $to) {
                     if (isset($parameters[$to])) {
                         $parameters[$to] = forward_static_call_array(
